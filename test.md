@@ -1,5 +1,5 @@
 # ATAC-seq post peak calling processing
-## reads counting
+## reads counting (BASH)
 After the basic reads alignment and peak calling, the first step is to combine the ATAC peaks identified per population (pooling the three samples for each population). this job has to be done for Forewing and Hindwing for each population, for the peaks present in 3 samples out of 3, and for the one found in at least 2 samples out of 3.
 the following example shows one population (H e. demophoon), forewing, 3 out of 3 samples:
 ```
@@ -56,4 +56,22 @@ then we found those more complicated cases:
 ```
 bedmap --echo --echo-map --fraction-either 0.5 --count demophoon.strict.FW.3of3.count.txt  hydara.strict.FW.3of3.count.txt | grep ";"  > demoxhydara.strict.FW.3of3.multy.txt
 ```
-In this last file 
+In this last file `demoxhydara.strict.FW.3of3.multy.txt` the pipe `|` separates the two population and semilcolon `;` separate the multiple peaks from the second population that align with one of the first population. to remove this problem we use:
+```
+while read line;
+do
+  uno=$(echo $line | cut -f1 -d"|");
+  echo $uno >>demoxhyda.strict.FW.3of3.1.txt;
+  echo $line | cut -f2 -d"|" | awk -F";" '{for (i=1;i<=NF;i++) printf("%s\n",$i)}'|tr " " "\t" | bedtools merge -i - -d 100000000 -c 4,5,6 -o sum,sum,sum  >>demoxhyda.strict.FW.3of3.2.txt;
+done<demoxhydara.strict.FW.3of3.multy.txt
+
+paste demoxhyda.strict.FW.3of3.1.txt demoxhyda.strict.FW.3of3.2.txt | tr " " "\t" >demoxhydara.strict.FW.3of3.multy.fixed.txt
+cat demoxhydara.strict.FW.3of3.multy.fixed.txt demoxhydara.strict.FW.3of3.single.txt | sort -k2,2n -k3,3n >demoxhydara.strict.FW.3of3.almostfinal.txt
+```
+Finally, we want to solve the problem of the multiple peaks from the first population that align with a single bigger one from the second (that is, the opposite situation described before)
+```
+cat demoxhydara.strict.FW.3of3.almostfinal.txt | bedtools merge -i - -c 4,5,6,7,8,9,10,11,12 -o sum,sum,sum,distinct,min,max,sum,sum,sum | awk 'BEGIN {FS="\t"; OFS="\t"} {print $7,$8,$9,$10,$11,$12,$1,$2,$3,$4,$5,$6}' | bedtools merge -i - -c 4,5,6,7,8,9,10,11,12 -o sum,sum,sum,distinct,min,max,sum,sum,sum | awk 'BEGIN {FS="\t"; OFS="\t"} {print $7,$8,$9,$10,$11,$12,$1,$2,$3,$4,$5,$6}'>demoxhydara.strict.FW.3of3.final.txt
+```
+
+we are now ready to proceed with the differential accessibility analysis 
+The actual script for this step can be found at 
