@@ -1,5 +1,7 @@
 # ATAC-seq post peak calling processing
 ## reads counting (BASH)
+The actual script for this step can be found [here](https://github.com/DNAcastigator/summer-project/blob/main/ATAC-peak%20post%20peak%20calling%20processing.sh)
+
 After the basic reads alignment and peak calling, the first step is to combine the ATAC peaks identified per population (pooling the three samples for each population). this job has to be done for Forewing and Hindwing for each population, for the peaks present in 3 samples out of 3, and for the one found in at least 2 samples out of 3.
 the following example shows one population (H e. demophoon), forewing, 3 out of 3 samples:
 ```
@@ -74,4 +76,4 @@ cat demoxhydara.strict.FW.3of3.almostfinal.txt | bedtools merge -i - -c 4,5,6,7,
 ```
 
 we are now ready to proceed with the differential accessibility analysis 
-The actual script for this step can be found at 
+
