@@ -1,6 +1,9 @@
 # Differential Accessibility pipeline
 The DE analysis is divided into two main parts: Removal of unwanted variation (RUVseq) and actual Differential accessibility.
 I used a single custom function to perform all the steps together but I will break it down here.
+
+The full script for this step can be found [here](https://github.com/DNAcastigator/summer-project/blob/main/scripts/DE.ATAC.R)
+
 ## RUVseq
 The R package 'Removal of Unwanted Variation' eliminates various sources of noise in the data, including batch, library preparation, and other nuisance effects. It employs between-sample normalization methods as proposed in Risso et al. (2014).
 
@@ -97,7 +100,7 @@ a real example of this function would look something like this (using H. e. demo
 ```
 demoxhyda.FW3of3=RUVparam(demoxhyda3of3,header.demoxhyda.FW,"yes","no","W_1+W_2",c("species","dem","hyd"))
 ```
-Finally, we can now use the normalization factor from the previous function to normalize the totality of the peaks and not only the ones that are shared among the two population, this will be useful for plotting later
+Finally, we can now use the normalization factor from the previous function to normalize the totality of the peaks and not only the ones that are shared among the two populations, this will be useful for plotting later
 ```
 normalie<-function(evenbefore1,evenbefore2,factor){
 #ratio=before/after
@@ -114,4 +117,4 @@ return(lista)
 
 demxhyda.norm.all=normalie(demophoonFWall,hydaraFWall,demoxhyda.FW3of3[[2]])
 ```
-
+Now is possible to use this data to generate plots like the one in Figure 1 of the main paper, the script is available [here](https://github.com/DNAcastigator/summer-project/blob/main/scripts/genomewide.plot.functions.R)
