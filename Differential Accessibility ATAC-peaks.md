@@ -18,15 +18,10 @@ RUVparam<-function(subset,subsetheader,plot,fact,K,con){
     filter <- apply(subset, 1, function(x) length(x[x>5])>5)
   filtered <- subset[filter,]
   
-  #filtered=subset
-  
   set <- newSeqExpressionSet(as.matrix(filtered),
                              phenoData = data.frame(subsetheader, row.names=colnames(filtered)))
   set <- betweenLaneNormalization(set, which="upper")
-  
-  #plotPCA(as.matrix(filtered), col=colors[as.factor(subsetheader$species)], cex=1.2,main="filtered")
-  #plotPCA(set, col=colors[as.factor(subsetheader$species)], cex=1.2,main="set")
-  
+ 
   design <- model.matrix(~subsetheader$species, data=pData(set))
   
   y <- DGEList(counts=counts(set), group=subsetheader$species)
@@ -81,16 +76,10 @@ after some filtering and cleaning, the function returns the DE genes output from
 ```R
 FW.vsall.filt=na.omit(data.frame(res_FW))
   print(summary(res_FW))
-  #ten=quantile(na.omit(FW.vsall.filt[FW.vsall.filt$padj<0.05,]$baseMean), prob = 1 - 75/100)
-  #FW.vsall.filt=as.data.frame(FW.vsall.filt[FW.vsall.filt$baseMean>ten,])
   FW.vsall.filt$pan=ifelse(FW.vsall.filt$log2FoldChange > 0,str_split_fixed(rownames(FW.vsall.filt),"-",2)[,1],str_split_fixed(rownames(FW.vsall.filt),"-",2)[,2])
   FW.vsall.filt$pos=as.numeric(str_split_fixed(FW.vsall.filt$pan,"_",3)[,2])
   FW.vsall.filt$pos2=as.numeric(str_split_fixed(FW.vsall.filt$pan,"_",3)[,3])
   FW.vsall.filt=FW.vsall.filt[FW.vsall.filt$pos2<688640245,]
-   # print(nrow(FW.vsall.filt[(FW.vsall.filt$padj<0.05) & (FW.vsall.filt$log2FoldChange>0),]))
-  #print(nrow(FW.vsall.filt[(FW.vsall.filt$padj<0.01) & (FW.vsall.filt$log2FoldChange<0),]))
-  
-  ggplot(FW.vsall.filt[(FW.vsall.filt$padj<0.05),])+geom_point(aes(x=pos,y=log2FoldChange))
   result=list(FW.vsall.filt,test)
   return(result)
   
@@ -103,9 +92,6 @@ demoxhyda.FW3of3=RUVparam(demoxhyda3of3,header.demoxhyda.FW,"yes","no","W_1+W_2"
 Finally, we can now use the normalization factor from the previous function to normalize the totality of the peaks and not only the ones that are shared among the two populations, this will be useful for plotting later
 ```R
 normalie<-function(evenbefore1,evenbefore2,factor){
-#ratio=before/after
-#factor=ratio[1,]
-#print(ratio)
 before.norm1=as.data.frame(mapply('/', evenbefore1, factor[1:3]))
 before.norm2=as.data.frame(mapply('/', evenbefore2, factor[4:6]))
 rownames(before.norm1)=rownames(evenbefore1)
