@@ -97,3 +97,21 @@ a real example of this function would look something like this (using H. e. demo
 ```
 demoxhyda.FW3of3=RUVparam(demoxhyda3of3,header.demoxhyda.FW,"yes","no","W_1+W_2",c("species","dem","hyd"))
 ```
+Finally, we can now use the normalization factor from the previous function to normalize the totality of the peaks and not only the ones that are shared among the two population, this will be useful for plotting later
+```
+normalie<-function(evenbefore1,evenbefore2,factor){
+#ratio=before/after
+#factor=ratio[1,]
+#print(ratio)
+before.norm1=as.data.frame(mapply('/', evenbefore1, factor[1:3]))
+before.norm2=as.data.frame(mapply('/', evenbefore2, factor[4:6]))
+rownames(before.norm1)=rownames(evenbefore1)
+rownames(before.norm2)=rownames(evenbefore2)
+lista=list(before.norm1,before.norm2)
+return(lista)
+}
+
+
+demxhyda.norm.all=normalie(demophoonFWall,hydaraFWall,demoxhyda.FW3of3[[2]])
+```
+
