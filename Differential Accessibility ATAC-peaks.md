@@ -11,7 +11,7 @@ in this work, I used specifically RUVr, which removes variability based on the r
 
 In this first part of the function, we proceed with upper-quartile normalization and then with the calculation of residuals; note that `subset` is the gene count matrix and `subsetheader` contains the sample metadata.
 
-```
+```R
 RUVparam<-function(subset,subsetheader,plot,fact,K,con){
   
   subset=select(subset,c(subsetheader$sample))
@@ -38,7 +38,7 @@ RUVparam<-function(subset,subsetheader,plot,fact,K,con){
   genes <- rownames(filtered)
 ```
 In the following step, a series of scatterplots are plotted to show the effect of different factors of unwanted variation, the user may then input the desired number of factos.
-```
+```R
   
   colors <- brewer.pal(12, "Set3")
   ############
@@ -59,7 +59,7 @@ In the following step, a series of scatterplots are plotted to show the effect o
 ```
 
 We then add the desired factors in the DEseq2 design formula and proceed with the DE analysis
-```
+```R
 set.x=RUVr(set, genes, k=4, res)
   reads=data.frame(counts(set.x))
   print(pData(set.x))
@@ -78,7 +78,7 @@ set.x=RUVr(set, genes, k=4, res)
   res_FW <- results(atacDDSXxYlFW,contrast=con,lfcThreshold=0.5,alpha=0.05)
 ```
 after some filtering and cleaning, the function returns the DE genes output from DEseq2 as well as the factor of normalization obtained from the analysis for each sample.
-```
+```R
 FW.vsall.filt=na.omit(data.frame(res_FW))
   print(summary(res_FW))
   #ten=quantile(na.omit(FW.vsall.filt[FW.vsall.filt$padj<0.05,]$baseMean), prob = 1 - 75/100)
@@ -97,11 +97,11 @@ FW.vsall.filt=na.omit(data.frame(res_FW))
 }
 ```
 a real example of this function would look something like this (using H. e. demophoon and H. e. hydara):
-```
+```R
 demoxhyda.FW3of3=RUVparam(demoxhyda3of3,header.demoxhyda.FW,"yes","no","W_1+W_2",c("species","dem","hyd"))
 ```
 Finally, we can now use the normalization factor from the previous function to normalize the totality of the peaks and not only the ones that are shared among the two populations, this will be useful for plotting later
-```
+```R
 normalie<-function(evenbefore1,evenbefore2,factor){
 #ratio=before/after
 #factor=ratio[1,]
