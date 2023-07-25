@@ -1,24 +1,6 @@
 
 
 
-
-
-
-############# 2 out of 3
-
-
-
-################## all
-
-
-
-######################## afetr couting with ALL
-
-
-
-
-
-
 sed 's/SeqSeqPan;0|SeqSeqPan_dem_hyd_fav_ety_not_che.xmfa/pan/g' ../../../MACS2_sub/final_plan/demophoon.strict.HW.unique.bed | bedtools intersect -wa -a demophoon.strict.HW.all.count.txt -b - > demophoon.strict.HW.unique.count.txt
 
 sed 's/SeqSeqPan;0|SeqSeqPan_dem_hyd_fav_ety_not_che.xmfa/pan/g' ../../../MACS2_sub/final_plan/hydara.strict.HW.unique.bed | bedtools intersect -wa -a hydara.strict.HW.all.count.txt -b - > hydara.strict.HW.unique.count.txt
