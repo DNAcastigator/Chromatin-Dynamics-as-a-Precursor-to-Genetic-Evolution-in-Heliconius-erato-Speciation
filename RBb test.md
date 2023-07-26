@@ -1,6 +1,7 @@
 # Ruggieri-Bellin binomial test
 The RBb test splits the genome into 10 Fst intervals (increasing by 0.1), then calculates an expected probability to find a unique ATAC peak in each interval (using the average of 1000 random sampling), and then performs a binomial test for each interval using the empirical number of unique ATAC-peak as “number of successes”, the total number of ATAC peaks in that Fst interval as “number of trials” and the expected probability as “hypothesized probability of success”. The test outputs a p value for each test (null hypothesis “greater”) that then are adjusted using holm correction.
-the following picture tries to summarize the previous, rather wordy explanation.
+
+The following picture tries to summarize the previous, rather wordy explanation.
 ![image](https://github.com/DNAcastigator/summer-project/assets/47642926/a83005c1-ac3f-4231-872d-f297ce2b8404)
 
 the function that calculates it takes as input 1) the genomewide fst intervals distribution for the two populations studied (calculated with another custom function, reported later); 2) the position of the unique ATAC-seq for the two population studied; 3) the position of all the ATAC peaks identified in the two populations:
