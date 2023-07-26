@@ -1,9 +1,9 @@
 # Ruggieri-Bellin binomial test
-The RBb test splits the genome in 10 Fst intervals (increasing by 0.1), than calculate an expected probability to find a unique ATAC peak in each interval (using average of 1000 random sampling), and then perform a binomial test for each intervals using the empirical number of unique ATAC-peak as “number of successes”, the total number of ATAC peaks in that Fst interval as “number of trials” and the expected probability as “hypothesized probability of success”. The test outputs a p values for each test (null hypothesis “greater”) that then are adjusted using bonferroni correction.
+The RBb test splits the genome into 10 Fst intervals (increasing by 0.1), then calculates an expected probability to find a unique ATAC peak in each interval (using the average of 1000 random sampling), and then performs a binomial test for each interval using the empirical number of unique ATAC-peak as “number of successes”, the total number of ATAC peaks in that Fst interval as “number of trials” and the expected probability as “hypothesized probability of success”. The test outputs a p value for each test (null hypothesis “greater”) that then are adjusted using holm correction.
 the following picture tries to summarize the previous, rather wordy explanation.
 ![image](https://github.com/DNAcastigator/summer-project/assets/47642926/a83005c1-ac3f-4231-872d-f297ce2b8404)
 
-the function that calculate it takes as input 1) the genomewide ATAC-seq frequency distribution for the two population studied (caluclated with another custom function, reported later); 2) the position of the unique ATAC-seq for the two population studied; 3) the position of all the ATAC peaks identified in the two poulation:
+the function that calculates it takes as input 1) the genomewide fst intervals distribution for the two populations studied (calculated with another custom function, reported later); 2) the position of the unique ATAC-seq for the two population studied; 3) the position of all the ATAC peaks identified in the two populations:
 ```R
 Fst.stat=function(fsts,position,total_pos,n,totplot){
   
@@ -37,7 +37,7 @@ extest=binom.test(as.numeric(x[2]), as.numeric(x[3]), p = as.numeric(x[4]),
 return(extest$p.value)
 })
 ```
-The function then produces some violin plot with the random sampling distributions and add a colored point that represents the empirical probability to find a unique ATAC-peak in the specific fst intervals (x-axis),the asterisks show where the binomial test was significant (the p.values are adjusted with holm), an example:
+The function then produces some violin plot with the random sampling distributions and adds a colored point that represents the empirical probability to find a unique ATAC-peak in the specific fst intervals (x-axis), the asterisks show where the binomial test was significant (the p.values are adjusted with holm), an example:
 ![demophoonvsfavorinus corr DEunique1 zoom crop](https://github.com/DNAcastigator/summer-project/assets/47642926/e65994ec-6676-4e3f-b2b5-497de8b67dc1)
 ```R
 
@@ -52,7 +52,9 @@ g=ggplot(confronto)+
 return(list(g,confronto))
 }
 ```
-the function to generate the genome-wide ATAC-seq frequency is :
+the function to generate the genome-wide ATAC-seq frequency is explained in [ks.test](https://github.com/DNAcastigator/summer-project/blob/main/Kolmogorov%20Smirnov%20test.md).
+
+two functions needed to process the data before they can be used for RBb test and calculate the genomewide fst intervals distribution are:
 ```R
 Fst.dist=function(data,limit,sigla){
     uno=na.omit(data[data$Fst>=limit[1] & data$Fst<limit[2],])
@@ -80,7 +82,7 @@ Fst.dist.loop=function(data){
 }
 
 ```
-So, an example on how to run this test is this:
+So, an example of how to run this test is this:
 ```R
 position1=demophoon.HW.unique.bed$start+((demophoon.HW.unique.bed$end-demophoon.HW.unique.bed$end)/2)
 position2=demophoon.FW.unique.bed$start+((demophoon.FW.unique.bed$end-demophoon.FW.unique.bed$end)/2)
@@ -101,4 +103,4 @@ freq.df_demohydFst_1k=freq_fun(demxhd.1k.fst,demhyd_total_pos,"Fst")
 fst.dist.demohyda=Fst.dist.loop(demxhd.1k.fst)
 split2=Fst.stat(fst.dist.demohyda,position_Deunique_demohyda,notxety_total_pos,1000,"no")
 ```
-the full script used in this work (that also performs [Ks.test]())is [here](https://github.com/DNAcastigator/summer-project/blob/main/scripts/correlation_statistic.R)
+the full script used in this work (that also performs [Ks.test](https://github.com/DNAcastigator/summer-project/blob/main/Kolmogorov%20Smirnov%20test.md))is [here](https://github.com/DNAcastigator/summer-project/blob/main/scripts/correlation_statistic.R)
