@@ -52,8 +52,6 @@ g=ggplot(confronto)+
 return(list(g,confronto))
 }
 ```
-the function to generate the genome-wide ATAC-seq frequency is explained in [ks.test](https://github.com/DNAcastigator/summer-project/blob/main/Kolmogorov%20Smirnov%20test.md).
-
 two functions needed to process the data before they can be used for RBb test and calculate the genomewide fst intervals distribution are:
 ```R
 Fst.dist=function(data,limit,sigla){
