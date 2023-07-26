@@ -1,5 +1,6 @@
 # summer-project pipeline
-Hello there,
+Hello there
+
 this is a brief summary of the pipelines used in the Ruggieri et al 2023 paper. I included tutorials and full scripts of those parts that may be new:
 ## Genomes assemblies and pan-genome generation
 These processes have already been described in  Ruggieri et al 2022, and you can find information in [Dr. Steven van Belleghem github](https://github.com/StevenVB12/Genomics) 
