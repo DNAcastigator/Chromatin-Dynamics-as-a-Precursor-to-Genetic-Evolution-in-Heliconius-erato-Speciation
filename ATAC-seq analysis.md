@@ -47,7 +47,7 @@ We then combine the results from each sample of a population together and we sub
 paste LI7_demophoon_FW.all.count.out FW-pboy.all.count.out LB_41.all.count.out | cut -f1,2,3,4,8,12 |sed 's/SeqSeqPan;0|SeqSeqPan_dem_hyd_fav_ety_not_che.xmfa/pan/g'>all_count/demophoon.strict.FW.all.count.txt
 sed 's/SeqSeqPan;0|SeqSeqPan_dem_hyd_fav_ety_not_che.xmfa/pan/g' ../../../MACS2_sub/final_plan/demophoon.strict.FW.3of3.bed | bedtools intersect -wa -a demophoon.strict.FW.all.count.txt -b - > demophoon.strict.FW.3of3.count.txt
 ```
-## shared ATAC-peaks
+## shared ATAC-peaks (BASH)
 OK, this final step is a little rough, so stay with me.
 The last step allows us to find those peaks that are shared between two different populations, the main problem is that some bigger peaks in one population aligned with multiple smaller peaks in the other population, so the smaller peaks were merged, and the reads were summed
 So, First, we identified the shared peaks that don't give any problem, using always h. e.  demophoon and h. e.  hydara as example:
