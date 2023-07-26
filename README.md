@@ -30,6 +30,14 @@ i will not indulge on these basic processes since they have been discussed alrea
 ## tutotrials
 
 After the peaks have been identified for each sample, the first step is to select the right peaks subset, count the reads and identify the peaks that are unique and the ones that
-are shared among two pair of populations -> [ATAC-seq analysis](https://github.com/DNAcastigator/summer-project/blob/main/ATAC-seq%20analysis.md)
+are shared among two pair of populations -> [ATAC-seq analysis](https://github.com/DNAcastigator/summer-project/blob/main/ATAC-seq%20analysis.md) (tutorial)
 
-The following step is to perform Differential accessibility analysis ->[ATAC-peaks DA](https://github.com/DNAcastigator/summer-project/blob/main/Differential%20Accessibility%20ATAC-peaks.md)
+The following step is to perform Differential accessibility analysis ->[ATAC-peaks DA](https://github.com/DNAcastigator/summer-project/blob/main/Differential%20Accessibility%20ATAC-peaks.md) (tutorial)
+
+It is now possible to create some plots as in Figure 1 format the main paper <-[genomewide plots](https://github.com/DNAcastigator/summer-project/blob/main/scripts/genomewide.plot.functions.R) (script)
+
+Alternatively, there is the possibility to perform some statistical analysis to capture a possible connection between the values of Fst and the ATAC-seq position
+
+-[K-S test](https://github.com/DNAcastigator/summer-project/blob/main/Kolmogorov%20Smirnov%20test.md) (tutorial)
+
+-[Ruggieri-Bellin binomial test](https://github.com/DNAcastigator/summer-project/blob/main/RBb%20test.md) (tutorial)
