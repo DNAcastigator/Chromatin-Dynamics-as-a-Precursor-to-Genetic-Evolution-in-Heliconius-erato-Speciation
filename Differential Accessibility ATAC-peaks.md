@@ -4,7 +4,7 @@ I used a single custom function to perform all the steps together but I will bre
 
 The full script for this step can be found [here](https://github.com/DNAcastigator/summer-project/blob/main/scripts/DE.ATAC.R)
 
-## RUVseq
+## RUVseq (R)
 The R package 'Removal of Unwanted Variation' eliminates various sources of noise in the data, including batch, library preparation, and other nuisance effects. It employs between-sample normalization methods as proposed in Risso et al. (2014).
 
 in this work, I used specifically RUVr, which removes variability based on the residuals (e.g., deviance residuals) obtained from a preliminary GLM regression of the counts against the covariates of interest. Prior to this step, you may consider applying normalization using a method like upper-quartile normalization.
@@ -72,7 +72,7 @@ set.x=RUVr(set, genes, k=4, res)
   test=sizeFactors(atacDDSXxYlFW)
   res_FW <- results(atacDDSXxYlFW,contrast=con,lfcThreshold=0.5,alpha=0.05)
 ```
-after some filtering and cleaning, the function returns the DE genes output from DEseq2 as well as the factor of normalization obtained from the analysis for each sample.
+after some filtering and cleaning, the function returns the DA peaks output from DEseq2 as well as the factor of normalization obtained from the analysis for each sample.
 ```R
 FW.vsall.filt=na.omit(data.frame(res_FW))
   print(summary(res_FW))
