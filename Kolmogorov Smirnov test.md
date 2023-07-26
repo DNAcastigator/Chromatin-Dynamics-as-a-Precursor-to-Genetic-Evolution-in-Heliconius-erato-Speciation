@@ -86,3 +86,4 @@ rank_plot<-function(dataf,position,freq.df,num,dat){
 }
 
 ```
+the full scripti (that also perfoms the [RBb test](https://github.com/DNAcastigator/summer-project/blob/main/RBb%20test.md)) is [here](https://github.com/DNAcastigator/summer-project/blob/main/scripts/correlation_statistic.R)
