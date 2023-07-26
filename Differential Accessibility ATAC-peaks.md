@@ -52,7 +52,7 @@ In the following step, a series of scatterplots are plotted to show the effect o
     n=K
   }
 ```
-
+## Differential Accessibility(R)
 We then add the desired factors in the DEseq2 design formula and proceed with the DE analysis
 ```R
 set.x=RUVr(set, genes, k=4, res)
