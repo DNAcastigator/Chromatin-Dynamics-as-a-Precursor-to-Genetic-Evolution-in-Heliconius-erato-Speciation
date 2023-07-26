@@ -75,5 +75,5 @@ Finally, we want to solve the problem of the multiple peaks from the first popul
 cat demoxhydara.strict.FW.3of3.almostfinal.txt | bedtools merge -i - -c 4,5,6,7,8,9,10,11,12 -o sum,sum,sum,distinct,min,max,sum,sum,sum | awk 'BEGIN {FS="\t"; OFS="\t"} {print $7,$8,$9,$10,$11,$12,$1,$2,$3,$4,$5,$6}' | bedtools merge -i - -c 4,5,6,7,8,9,10,11,12 -o sum,sum,sum,distinct,min,max,sum,sum,sum | awk 'BEGIN {FS="\t"; OFS="\t"} {print $7,$8,$9,$10,$11,$12,$1,$2,$3,$4,$5,$6}'>demoxhydara.strict.FW.3of3.final.txt
 ```
 
-we are now ready to proceed with the differential accessibility analysis 
+we are now ready to proceed with the differential accessibility analysis [here](https://github.com/DNAcastigator/summer-project/blob/main/Differential%20Accessibility%20ATAC-peaks.md)
 
