@@ -1,0 +1,35 @@
+# summer-project pipeline
+Hello there,
+this is a brief summary of the pipelines used in the Ruggieri et al 2023 paper. I included tutorials and full scripts of those parts that may be new:
+## Genomes assemblies and pan-genome generation
+These processes have already been described in  Ruggieri et al 2022, and you can find information in [Dr. Steven van Belleghem github](https://github.com/StevenVB12/Genomics) 
+## resequencing data and population genomics
+i will not indulge on these basic processes since they have been discussed already in previous papers.
+### Resequancing
+-BWA (aligning to pan genome)
+
+-Picard (remove PCR duplicates)
+
+-GATK (genotype calling and quality filtering)
+### pop genetics
+-SweepFinder2 (selective sweep)
+
+-Steve Martin's [popgenWindows.py](https://github.com/simonhmartin/genomics_general)) (Fst)
+
+## ATAC-seq data preprocessing
+
+-trimmomatic (cleaning)
+
+-bowtie2 (aligning to reference genome)
+
+-Picard (remove PCR duplicate)
+
+-MACS2 (peak calling)
+
+
+## tutotrials
+
+After the peaks have been identified for each sample, the first step is to select the right peaks subset, count the reads and identify the peaks that are unique and the ones that
+are shared among two pair of populations -> [ATAC-seq analysis](https://github.com/DNAcastigator/summer-project/blob/main/ATAC-seq%20analysis.md)
+
+The following step is to perform Differential accessibility analysis ->[ATAC-peaks DA](https://github.com/DNAcastigator/summer-project/blob/main/Differential%20Accessibility%20ATAC-peaks.md)
