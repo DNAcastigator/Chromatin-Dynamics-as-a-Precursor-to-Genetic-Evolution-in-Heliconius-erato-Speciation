@@ -21,7 +21,7 @@ freq_fun<-function(dataf,position,dat){
   return(freq.df)
 }
 ```
-The empirical distribution was then compared to the "expected" distribution, here is the full function:
+The empirical distribution was then compared to the "expected" distribution, here is the full function: it takes as input 1) the fst file; 2) the position of unique ATAC-peaks; 3) the frequency distribution previously calculated:
 ```R
 rank_plot<-function(dataf,position,freq.df,num,dat){
   if (dat=="sweep"){
