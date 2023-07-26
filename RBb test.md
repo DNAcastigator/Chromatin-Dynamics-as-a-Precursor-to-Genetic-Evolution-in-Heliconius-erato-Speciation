@@ -101,4 +101,4 @@ freq.df_demohydFst_1k=freq_fun(demxhd.1k.fst,demhyd_total_pos,"Fst")
 fst.dist.demohyda=Fst.dist.loop(demxhd.1k.fst)
 split2=Fst.stat(fst.dist.demohyda,position_Deunique_demohyda,notxety_total_pos,1000,"no")
 ```
-the full script used in this work is [here](https://github.com/DNAcastigator/summer-project/blob/main/scripts/correlation_statistic.R)
+the full script used in this work (that also performs [Ks.test]())is [here](https://github.com/DNAcastigator/summer-project/blob/main/scripts/correlation_statistic.R)
