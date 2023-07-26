@@ -82,7 +82,6 @@ random=rbind(random,ran)
 }
 
 resu_random=na.omit(random) %>% group_by(sigla) %>% summarise(random_count = mean(final_count),se=sqrt(sd(final_count)/n())) %>% data.frame()
-#resu_random=na.omit(random) %>% group_by(sigla) %>% summarise(random_count = mean(final_count),se=sd(final_count)) %>% data.frame()
 ################
 
 confronto=cbind(resu,resu_random[c(2,3)])
@@ -94,21 +93,15 @@ extest=binom.test(as.numeric(x[2]), as.numeric(x[3]), p = as.numeric(x[4]),
            alternative =  "g",
            conf.level = 0.95)
 
-#output=data.frame(p_value=extest$p.value,con_int_low=extest$conf.int[1],con_int_hig=extest$conf.int[2])
-
-
 return(extest$p.value)
 })
-#confronto=cbind(confronto,do.call("rbind",statistic))
+
 confronto=cbind(confronto,statistic)
-#confronto$statistic=confronto$statistic*10
 
 print(confronto)
 g=ggplot(confronto)+
   geom_violin(data=random, aes(x=sigla, y=final_count)) + 
   geom_point(aes(x=sigla,y=final_count/total),col="red",shape=ifelse(p.adjust(confronto$statisti,method = "holm")<0.05,8,16))+
-  #geom_point(aes(x=sigla,y=random_count),col="blue")+
-  #geom_errorbar(aes(x=sigla,ymin = random_count-se, ymax = random_count+se),col="blue")+
   {if(totplot=="yes") ylim(c(0,1)) }+
   theme_classic() +theme(axis.title.x=element_blank(),axis.text.x=element_text(angle=45, hjust=1),axis.title.y=element_blank())
 return(list(g,confronto))
@@ -146,9 +139,6 @@ rank_plot<-function(dataf,position,freq.df,num,dat){
   n=nrow(subset)
   
   
-  
-  #random=data.frame(Fst=sample(freq.df$Fst,size=n,prob=freq.df$frq,replace=TRUE))
-  #random$sigla="random"
   ############
   freq.df=freq.df[!is.na(freq.df$Fst),]
   total=data.frame(Fst=sample(freq.df$Fst,size=n,prob=freq.df$frq,replace=TRUE),rank=0)
@@ -164,7 +154,6 @@ rank_plot<-function(dataf,position,freq.df,num,dat){
   }
   rankandom=data.frame(total %>% group_by(rank) %>% summarise(Fst = mean(Fst)),sigla="random")
   random=rankandom[,c(2,3,1)]
-  #random$sigla="random"
   
   ###############
   final=rbind(subset,random)
@@ -177,7 +166,6 @@ rank_plot<-function(dataf,position,freq.df,num,dat){
   print(ks.test(subset$Fst,rankandom$Fst,alternative="less",simulate.p.value =TRUE))
   print(nrow(rankandom))
   print(nrow(subset))
-  #f=ggplot(rbind(ranksweep2,rankandom2))+geom_line(aes(x=as.numeric(rank),y=Fst,col=sigla))+geom_point(aes(x=as.numeric(rank),y=Fst,col=sigla))+theme_classic()
   f=ggplot(rbind(subset,rankandom))+geom_line(aes(x=as.numeric(rank),y=Fst,col=sigla))+geom_point(aes(x=as.numeric(rank),y=Fst,col=sigla))+theme_classic()
   if(dat=="sweep") {f=f+ylab("CLR")}
   oupput=full_join(subset,rankandom,by="rank")
@@ -298,9 +286,9 @@ position1=demophoon.HW.unique.bed$start+((demophoon.HW.unique.bed$end-demophoon.
 position2=demophoon.FW.unique.bed$start+((demophoon.FW.unique.bed$end-demophoon.FW.unique.bed$end)/2)
 position3=hydara.HW.unique.bed$start+((hydara.HW.unique.bed$end-hydara.HW.unique.bed$end)/2)
 position4=hydara.FW.unique.bed$start+((hydara.FW.unique.bed$end-hydara.FW.unique.bed$end)/2)
-#position_unique=c(position1,position2,position3,position4)
+
 position_Deunique_demohyda=c(position1,position2,position3,position4,position_DE)
-#position=c(position1,position2)
+
 
 
 
@@ -593,7 +581,6 @@ demnota_total_pos=demophoonxnotabilis.complete$start+((demophoonxnotabilis.compl
 freq.df_demonotaFst_1k=freq_fun(demxnota.1k.fst,demnota_total_pos,"Fst")
 
 rank2_nota=rank_plot(demxnota.1k.fst,position_Deunique_demonota,freq.df_demonotaFst_1k,1000,"Fst")
-#print(ks.test(rank2_nota[[2]]$Fst.x,rank2_nota[[2]]$Fst.y,alternative="less",simulate.p.value =TRUE))
 
 fst.dist.demonotaa=Fst.dist.loop(demxnota.1k.fst)
 split2_nota=Fst.stat(fst.dist.demonotaa,position_Deunique_demonota,demnota_total_pos,1000,"no")
