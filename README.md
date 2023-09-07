@@ -42,3 +42,6 @@ Alternatively, there is the possibility to perform some statistical analysis to 
 -[K-S test](https://github.com/DNAcastigator/summer-project/blob/main/Kolmogorov%20Smirnov%20test.md) (tutorial)
 
 -[Ruggieri-Bellin binomial test](https://github.com/DNAcastigator/summer-project/blob/main/RBb%20test.md) (tutorial)
+
+### extra analysis
+Other analysys you may find interesting concern the identification of gene-wise Fst signal in the Fst data calculated in wondows of 1k.->
