@@ -28,7 +28,7 @@ i will not indulge on these basic processes since they have been discussed alrea
 -MACS2 (peak calling)
 
 
-## tutotrials
+## TUTORIALS
 
 After the peaks have been identified for each sample, the first step is to select the right peaks subset, count the reads and identify the peaks that are unique and the ones that
 are shared among two pair of populations -> [ATAC-seq analysis](https://github.com/DNAcastigator/summer-project/blob/main/ATAC-seq%20analysis.md) (tutorial)
@@ -43,5 +43,5 @@ Alternatively, there is the possibility to perform some statistical analysis to 
 
 -[Ruggieri-Bellin binomial test](https://github.com/DNAcastigator/summer-project/blob/main/RBb%20test.md) (tutorial)
 
-### extra analysis
-Other analysys you may find interesting concern the identification of gene-wise Fst signal in the Fst data calculated in wondows of 1k.->
+### Extra analysis
+Other analysys you may find interesting concern the identification of gene-wise Fst signal in the Fst data calculated in wondows of 1k.-> [noise vs signal for fst](https://github.com/DNAcastigator/summer-project/blob/main/signal%20vs%20noise%20Fst.md)
