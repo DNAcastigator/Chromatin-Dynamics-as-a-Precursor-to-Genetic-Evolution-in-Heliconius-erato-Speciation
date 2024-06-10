@@ -4,7 +4,7 @@ The Custom binomial test splits the genome into 10 Fst intervals (increasing by 
 The following picture tries to summarize the previous, quite wordy, explanation.
 ![image](https://github.com/DNAcastigator/summer-project/assets/47642926/a83005c1-ac3f-4231-872d-f297ce2b8404)
 
-the function that calculates it takes as input 1) the genomewide fst intervals distribution for the two populations studied (calculated with another custom function, reported later); 2) the position of the unique ATAC-seq for the two population studied; 3) the position of all the ATAC peaks identified in the two populations:
+the function that calculates it takes as input 1) the genomewide fst intervals distribution for the two populations studied (calculated with another custom function, reported later); 2) the position of the unique ATAC-seq for the two populations studied; 3) the position of all the ATAC peaks identified in the two populations:
 ```R
 Fst.stat=function(fsts,position,total_pos,n,totplot){
   
@@ -38,7 +38,7 @@ extest=binom.test(as.numeric(x[2]), as.numeric(x[3]), p = as.numeric(x[4]),
 return(extest$p.value)
 })
 ```
-The function then produces some violin plot with the random sampling distributions and adds a colored point that represents the empirical probability to find a unique ATAC-peak in the specific fst intervals (x-axis), the asterisks show where the binomial test was significant (the p.values are adjusted with holm), an example:
+The function then produces some violin plot with the random sampling distributions and adds a colored point that represents the empirical probability of finding a unique ATAC-peak in the specific fst intervals (x-axis), the asterisks show where the binomial test was significant (the p.values are adjusted with holm), an example:
 ![demophoonvsfavorinus corr DEunique1 zoom crop](https://github.com/DNAcastigator/summer-project/assets/47642926/e65994ec-6676-4e3f-b2b5-497de8b67dc1)
 ```R
 
@@ -53,7 +53,7 @@ g=ggplot(confronto)+
 return(list(g,confronto))
 }
 ```
-two functions needed to process the data before they can be used for the Custom binomial test and calculate the genomewide fst intervals distribution are:
+two functions needed to process the data before they can be used for the Custom binomial test and calculate the genome-wide fst intervals distribution are:
 ```R
 Fst.dist=function(data,limit,sigla){
     uno=na.omit(data[data$Fst>=limit[1] & data$Fst<limit[2],])
