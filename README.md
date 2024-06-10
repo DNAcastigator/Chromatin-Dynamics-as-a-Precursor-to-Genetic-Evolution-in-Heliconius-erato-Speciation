@@ -4,10 +4,10 @@ Hello there
 this is a brief summary of the pipelines used in the Ruggieri et al 2024 paper. I included tutorials and full scripts of those parts that may be new:
 ## Genomes assemblies and pan-genome generation
 These processes have already been described in  Ruggieri et al 2022, and you can find information in [Dr. Steven van Belleghem github](https://github.com/StevenVB12/Genomics) 
-## resequencing data and population genomics
-i will not indulge on these basic processes since they have been discussed already in previous papers.
-### Resequancing
--BWA (aligning to pan genome)
+## Resequencing data and population genomics
+I will not indulge in these basic processes since they have already been discussed in previous papers.
+### Resequencing
+-BWA (aligning to pan-genome)
 
 -Picard (remove PCR duplicates)
 
@@ -30,7 +30,7 @@ i will not indulge on these basic processes since they have been discussed alrea
 
 ## TUTORIALS
 
-After the peaks have been identified for each sample, the first step is to select the right peaks subset, count the reads and identify the peaks that are unique and the ones that
+After the peaks have been identified for each sample, the first step is to select the right peaks subset, count the reads, and identify the peaks that are unique and the ones that
 are shared among two pair of populations -> [ATAC-seq analysis](https://github.com/DNAcastigator/summer-project/blob/main/ATAC-seq%20analysis.md) (tutorial)
 
 The following step is to perform Differential accessibility analysis ->[ATAC-peaks DA](https://github.com/DNAcastigator/summer-project/blob/main/Differential%20Accessibility%20ATAC-peaks.md) (tutorial)
@@ -41,7 +41,7 @@ Alternatively, there is the possibility to perform some statistical analysis to 
 
 -[K-S test](https://github.com/DNAcastigator/summer-project/blob/main/Kolmogorov%20Smirnov%20test.md) (tutorial)
 
--[Ruggieri-Bellin binomial test](https://github.com/DNAcastigator/summer-project/blob/main/RBb%20test.md) (tutorial)
+-[Custom Binomial Test](https://github.com/DNAcastigator/summer-project/blob/main/RBb%20test.md) (tutorial)
 
 ### Extra analysis
-Other analysys you may find interesting concern the identification of gene-wise Fst signal in the Fst data calculated in wondows of 1k.-> [noise vs signal for fst](https://github.com/DNAcastigator/summer-project/blob/main/signal%20vs%20noise%20Fst.md)
+Other analyses you may find interesting concern the identification of gene-wise Fst signal in the Fst data calculated in windows of 1k.-> [noise vs signal for fst](https://github.com/DNAcastigator/summer-project/blob/main/signal%20vs%20noise%20Fst.md)
