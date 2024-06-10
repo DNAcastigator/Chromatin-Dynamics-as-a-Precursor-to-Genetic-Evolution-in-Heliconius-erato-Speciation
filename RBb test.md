@@ -1,5 +1,5 @@
-# Ruggieri-Bellin binomial test
-The RBb test splits the genome into 10 Fst intervals (increasing by 0.1), then calculates an expected probability to find a unique ATAC peak in each interval (using the average of 1000 random sampling), and then performs a binomial test for each interval using the empirical number of unique ATAC-peak as “number of successes”, the total number of ATAC peaks in that Fst interval as “number of trials” and the expected probability as “hypothesized probability of success”. The test outputs a p value for each test (null hypothesis “greater”) that then are adjusted using holm correction.
+# Custom Binomial test
+The Custom binomial test splits the genome into 10 Fst intervals (increasing by 0.1), then calculates an expected probability to find a unique ATAC peak in each interval (using the average of 1000 random sampling), and then performs a binomial test for each interval using the empirical number of unique ATAC-peak as “number of successes”, the total number of ATAC peaks in that Fst interval as “number of trials” and the expected probability as “hypothesized probability of success”. The test outputs a p-value for each test (null hypothesis “greater”) that then are adjusted using holm correction.
 
 The following picture tries to summarize the previous, quite wordy, explanation.
 ![image](https://github.com/DNAcastigator/summer-project/assets/47642926/a83005c1-ac3f-4231-872d-f297ce2b8404)
@@ -53,7 +53,7 @@ g=ggplot(confronto)+
 return(list(g,confronto))
 }
 ```
-two functions needed to process the data before they can be used for RBb test and calculate the genomewide fst intervals distribution are:
+two functions needed to process the data before they can be used for the Custom binomial test and calculate the genomewide fst intervals distribution are:
 ```R
 Fst.dist=function(data,limit,sigla){
     uno=na.omit(data[data$Fst>=limit[1] & data$Fst<limit[2],])
@@ -103,3 +103,4 @@ fst.dist.demohyda=Fst.dist.loop(demxhd.1k.fst)
 split2=Fst.stat(fst.dist.demohyda,position_Deunique_demohyda,notxety_total_pos,1000,"no")
 ```
 the full script used in this work (that also performs [Ks.test](https://github.com/DNAcastigator/summer-project/blob/main/Kolmogorov%20Smirnov%20test.md)) is [here](https://github.com/DNAcastigator/summer-project/blob/main/scripts/correlation_statistic.R)
+
