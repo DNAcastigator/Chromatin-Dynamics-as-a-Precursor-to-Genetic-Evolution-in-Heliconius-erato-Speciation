@@ -41,7 +41,7 @@ Alternatively, there is the possibility to perform some statistical analysis to 
 
 -[K-S test](https://github.com/DNAcastigator/summer-project/blob/main/Kolmogorov%20Smirnov%20test.md) (tutorial)
 
--[Custom Binomial Test](https://github.com/DNAcastigator/summer-project/blob/main/RBb%20test.md) (tutorial)
+-[Custom Binomial Test](https://github.com/DNAcastigator/summer-project/blob/main/Custom%20binomial%20test.md) (tutorial)
 
 ### Extra analysis
 Other analyses you may find interesting concern the identification of gene-wise Fst signal in the Fst data calculated in windows of 1k.-> [noise vs signal for fst](https://github.com/DNAcastigator/summer-project/blob/main/signal%20vs%20noise%20Fst.md)
