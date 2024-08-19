@@ -1,4 +1,4 @@
-# summer-project pipeline
+# pipeline
 Hello there
 
 this is a brief summary of the pipelines used in the Ruggieri et al 2024 paper. I included tutorials and full scripts of those parts that may be new:
