@@ -2,7 +2,7 @@
 Hello there
 
 this is a brief summary of the pipelines used in the Ruggieri et al 2024 paper. I included tutorials and full scripts of those parts that may be new:
-## Genomes assemblies and pan-genome generation
+## Genome assemblies and pan-genome generation
 These processes have already been described in  Ruggieri et al 2022, and you can find information in [Dr. Steven van Belleghem github](https://github.com/StevenVB12/Genomics) 
 ## Resequencing data and population genomics
 I will not indulge in these basic processes since they have already been discussed in previous papers.
@@ -45,3 +45,5 @@ Alternatively, there is the possibility to perform some statistical analysis to 
 
 ### Extra analysis
 Other analyses you may find interesting concern the identification of gene-wise Fst signal in the Fst data calculated in windows of 1k.-> [noise vs signal for fst](https://github.com/DNAcastigator/summer-project/blob/main/signal%20vs%20noise%20Fst.md)
+
+For the populations' evolution simulations with SLiM you can go [here](https://github.com/DNAcastigator/Chromatin-Dynamics-as-a-Precursor-to-Genetic-Evolution-in-Heliconius-erato-Speciation/blob/main/pop-simulations.md)
